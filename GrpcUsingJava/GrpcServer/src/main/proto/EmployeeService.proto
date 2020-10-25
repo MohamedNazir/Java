@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package="org.example.grpc";
+option java_multiple_files = true;
+
+enum EmployeeType {
+  PERMANENT = 0;
+  CONTRACT = 1;
+  DETACHED = 2;
+}
+
+message EmployeeRequest {
+  string name = 1;
+  int32 age = 2;
+  repeated string technologies = 3;
+  map<string, string> bagOfTricks = 4;
+  EmployeeType sentiment = 5;
+}
+
+message EmployeeResponse {
+  string greeting = 1;
+}
+
+service EmployeeService {
+  rpc getEmployeeDetails(EmployeeRequest) returns (EmployeeResponse);
+}
